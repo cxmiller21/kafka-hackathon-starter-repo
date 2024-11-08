@@ -1,0 +1,10 @@
+zk-single-kafka-single/*
+zk-single-kafka-multiple/*
+zk-multiple-kafka-single/*
+zk-multiple-kafka-multiple/*
+zk-multiple-kafka-multiple-schema-registry/*
+full-stack/*
+.idea/
+
+# Kafka Project Files
+projects/music-streaming/streaming-*.json

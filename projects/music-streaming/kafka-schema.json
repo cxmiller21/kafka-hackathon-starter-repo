@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Streaming Event",
+  "description": "A schema for streaming events",
+  "type": "object",
+  "properties": {
+    "song_id": {
+      "description": "Song ID",
+      "type": "string"
+    },
+    "song_title": {
+      "description": "Song title",
+      "type": "string"
+    },
+    "artist_name": {
+      "description": "Artist name",
+      "type": "string"
+    },
+    "album_name": {
+      "description": "Album name",
+      "type": "string"
+    },
+    "release_date": {
+      "description": "Release date",
+      "type": "string",
+      "format": "date"
+    },
+    "genre": {
+      "description": "Genre",
+      "type": "string"
+    },
+    "duration_seconds": {
+      "description": "Duration in seconds",
+      "type": "integer"
+    },
+    "user_id": {
+      "description": "User ID",
+      "type": "string"
+    },
+    "name": {
+      "description": "Name",
+      "type": "string"
+    },
+    "age": {
+      "description": "Age",
+      "type": "integer"
+    },
+    "country": {
+      "description": "Country",
+      "type": "string"
+    },
+    "address": {
+      "description": "Address",
+      "type": "string"
+    },
+    "subscription_type": {
+      "description": "Subscription type",
+      "type": "string"
+    },
+    "favorite_genres": {
+      "description": "Favorite genres",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "user_id"
+  ]
+}
