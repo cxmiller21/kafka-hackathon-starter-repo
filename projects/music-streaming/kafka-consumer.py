@@ -13,6 +13,7 @@ from uuid import uuid4
 
 
 consumer = Consumer({
+    "group.id": "music_streaming_data",
     "bootstrap.servers": "127.0.0.1:9092",
 })
 
@@ -27,10 +28,14 @@ def delivery_report(err, msg) -> None:
 
 
 def main():
+    """
+    Main function to consume messages from the Kafka topic 'music_streaming_data',
+    sanitize the JSON messages, and log the sanitized data.
+    """
     topic_name = "music_streaming_data"
 
     consumer.subscribe([topic_name])
-    data = {}
+    results = []
     try:
         while True:
             message = consumer.poll(1.0)
@@ -38,14 +43,18 @@ def main():
                 continue
             if message.error():
                 log.error(f"Consumer error: {message.error()}")
-                continue
-            data = json.loads(message.value())
-            break
+
+            message = message.value().decode('unicode_escape')
+            # How the heck is it this hard to convert the
+            # message to a dictionary?
+            # message = json.loads(message) # throwing decoding error...
+            log.info(f"Consumed message:\n{message}")
     except KeyboardInterrupt:
-        log.info("Stopping data consumption.")
-    finally:
+        log.info("Stopping kafka consumer")
         consumer.close()
-    return data
+
+    consumer.close()
+    return results
 
 if __name__ == "__main__":
     main()

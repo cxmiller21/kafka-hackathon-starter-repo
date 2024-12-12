@@ -75,12 +75,13 @@ def generate_user_data(num_users: int) -> dict:
                     ("France", 0.1),        # Generates 10% of the time
                 ])
             )
+
         users[user_id] = {
             "user_id": user_id,
             "name": fake.name(),
             "age": fake.random_int(min=18, max=70),
             "country": user_country,
-            "address": faker_instances[user_country].address(),
+            "address": faker_instances[user_country].address().replace("\n", ", "),
             "subscription_type": fake.random_element(elements=["Free", "Premium", "Family"]),
             "favorite_genres": random.sample(MUSIC_GENRES, random.randint(1, len(MUSIC_GENRES)))
         }
@@ -90,7 +91,7 @@ def generate_user_data(num_users: int) -> dict:
 def save_data_to_json(data: dict, output_file: str) -> None:
     """Save data to a JSON file."""
     with open(output_file, "w") as f:
-        json.dump(data, f, indent=2)
+        json.dump(data, f, indent=2, ensure_ascii=False)
     log.info(f"Generated {len(data)} items saved to {output_file}")
     return None
 

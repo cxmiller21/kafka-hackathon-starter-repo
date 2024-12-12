@@ -16,5 +16,3 @@ Create a music streaming workflow that generates and processes mock user music l
   - Example: Build a Java/Python application to read data from the topic and display it in a dashboard
   - Look into using a library like [Dash](https://dash.plotly.com/minimal-app) to create the dashboard
   - Look into using streams to update events
-
-

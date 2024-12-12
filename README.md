@@ -2,44 +2,6 @@
 
 Leveraging [Conduktor.io](https://www.conduktor.io/), a graphical desktop user interface for Apache Kafka and the [Conduktor starter GitHub repo](https://github.com/conduktor/kafka-stack-docker-compose).
 
-## Hackathon Instructions
-
-### Pick a Project
-
-- Easy:
-  - Basic producers and consumers created
-  - Project idea and goals available
-- Medium:
-  - Create your own producers and consumers. These could be scripts or Java/Python/other applications
-  - Project idea and goals available
-- Hard:
-  - Start from scratch and build your own adventure
-
-#### Easy: Music Streaming and Listening History
-
-Produce and consume your "application users" listening history.
-
-```bash
-# Run the script to generate mock users and songs
-python ./projects/music-streaming/generate-streaming-files.py
-
-# Run the processor script to start sending mock streaming data
-python ./projects/music-streaming/kafka-producer.py
-```
-
-#### Medium: Real-time Analytics Dashboard
-
-Create a real-time analytics dashboard that displays important data for your company.
-
-1. View the [Kafka Real-time Analytics Dashboard](./projects/real-time-dashboard/README.md) project README file
-2. Create new processors/consumers/applications in `./projects/real-time-dashboard`
-
-#### Hard: Build Your Own Adventure
-
-Create your own project using Apache Kafka.
-
-[Apache Kafka use cases](https://kafka.apache.org/uses)
-
 ## Stack versions
 
   - Conduktor Platform: latest
@@ -67,6 +29,7 @@ Create your own project using Apache Kafka.
    3. `pip install -r requirements.txt`
    4. `deactivate` (when done)
 3. Start the stack with the below docker compose commands
+   1. `docker compose -f full-stack.yml up`
 4. Access the Conduktor platform at [localhost:8080](http://localhost:8080/)
 5. Login with the following credentials:
    - login: `admin@admin.io`
@@ -75,29 +38,48 @@ Create your own project using Apache Kafka.
 7. Consume and transform events with Python/Kafka Consumers
 8. Save and view the data
 
-### Full stack
+## Hackathon Instructions
 
-To ease you journey with kafka just connect to [localhost:8080](http://localhost:8080/)
+### Pick a Project
 
-login: `admin@admin.io`
-password: `admin`
+- Easy:
+  - Basic producers and consumers created
+  - Project idea and goals available
+- Medium:
+  - Create your own producers and consumers. These could be scripts or Java/Python/other applications
+  - Project idea and goals available
+- Hard:
+  - Start from scratch and build your own adventure
 
- - Conduktor-platform: `$DOCKER_HOST_IP:8080`
- - Single Zookeeper: `$DOCKER_HOST_IP:2181`
- - Single Kafka: `$DOCKER_HOST_IP:9092`
- - Kafka Schema Registry: `$DOCKER_HOST_IP:8081`
- - Kafka Rest Proxy: `$DOCKER_HOST_IP:8082`
- - Kafka Connect: `$DOCKER_HOST_IP:8083`
- - KSQL Server: `$DOCKER_HOST_IP:8088`
-- (experimental) JMX port at `$DOCKER_HOST_IP:9001`
+#### Easy: Music Streaming and Listening History
 
-Run with:
+Produce and consume your "application users" listening history.
+
 ```bash
-docker compose -f full-stack.yml up
-docker compose -f full-stack.yml down
+# Generate reusable mock users and songs
+python3 ./projects/music-streaming/generate-streaming-files.py
+
+# Run the producer script to start sending mock streaming data
+python3 ./projects/music-streaming/kafka-producer.py
+
+# Run the consumer script to start reading and processing the mock streaming data
+python3 ./projects/music-streaming/kafka-consumer.py
 ```
 
-** Note: if you find that you can not connect to [localhost:8080](http://localhost:8080/) please run `docker compose -f full-stack.yml build` to rebuild the port mappings.
+#### Medium: Real-time Analytics Dashboard
+
+Create a real-time analytics dashboard that displays important data for your company.
+
+1. View the [Kafka Real-time Analytics Dashboard](./projects/real-time-dashboard/README.md) project README file
+2. Create new processors/consumers/applications in `./projects/real-time-dashboard`
+
+#### Hard: Build Your Own Adventure
+
+Create your own project using Apache Kafka.
+
+[Apache Kafka use cases](https://kafka.apache.org/uses)
+
+## Full Conduktor Configurations Options
 
 ### Single Zookeeper / Single Kafka (Development)
 
